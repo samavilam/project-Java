@@ -1,0 +1,165 @@
+package griffith;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Loops {
+
+	
+	/* Samantha Avila de Medeiros
+	 * ID: 3125216
+	 * Date of submission:
+	 */
+	
+	public static void main(String[] args) {
+		
+		/*Task One
+		 * In this exercise, I asked to the user insert positive numbers and finalize with zero.
+		 * After this, I did a loop, asking to the user insert numbers and, when he want, insert zero to 
+		 * finish and found the largest number.
+		 * So, in the end, my code give back the largest number who was insert by the user.
+		 */
+		
+		System.out.println(" ");
+	        
+		Scanner scan = new Scanner(System.in);
+        
+        System.out.println("Enter your positive numbers: ");
+        int positiveNumber = scan.nextInt();
+        int largest = Integer.MIN_VALUE;
+        
+        
+        int number;
+	        do {
+	            System.out.print("Enter a number (or 0 to find the largest): ");
+	            number = scan.nextInt();
+	            
+	            if (number > largest) {
+	                largest = number;
+	            }
+	        } while (number != 0);
+	        
+	        if (largest == 0) {
+	            System.out.println("No positive numbers are enter");
+	        } else {
+	            System.out.println("The largest number is: " + largest);
+	        }
+
+               	
+        		
+		/*Task Two
+		 * In this exercise, I asked to the user to put a entire number and an exponent. After this,
+		 * my code was able to show to the user all the answers (the first number was the base and the second
+		 * number was the exponent. With this, the number will be repeat so many times than the number of 
+		 * the exponent).
+		 */
+		
+        System.out.println(" ");
+        System.out.println(" ");
+        
+        Scanner scan2 = new Scanner(System.in);
+        
+        System.out.println("Enter a base: ");
+        long base = scan2.nextLong();
+        		
+        System.out.println("Enter an exponent: ");
+        long exponent = scan2.nextLong();
+        
+        System.out.println("Powers for " + base + ":");
+        
+        for (long entire = 1; entire <= exponent; entire++) {
+            long result = 1;
+            for (long secondNumber = 1; secondNumber <= entire; secondNumber++) {
+                result *= base;
+            }
+            System.out.println(base + "^" + entire + " = " + result);
+
+
+        }
+
+       
+		/*Task Three
+		 * I think this was the hardest exercise I've done. I invited the user to participate in 
+		 * a game with mathematical operators. With each answer came the result. If it is correct, 
+		 * move on to the next question. If it is wrong, there is a warning to the user, with the right 
+		 * answer. After 5 rounds, the results of the questions come. As requested, I asked the user if 
+		 * he wanted to continue playing. If the answer is no, the code thanks you and ends the round. If 
+		 * the answer is yes, the game continues.
+		 */
+        
+        System.out.println(" ");
+        System.out.println(" ");
+        
+        Scanner scan3 = new Scanner(System.in);
+        Random casual = new Random();
+                
+        int score = 0;
+        int rounds = 5; 
+        boolean eliminate = false;
+
+        System.out.println("Solve the maths problems:");
+
+        while (true) {
+        	int corrects = 0;
+        	
+        		for (int round = 1; round <= rounds; round++) {
+                        int numberA = casual.nextInt(11);
+                        int numberB = casual.nextInt(11);
+                        int result = 0;
+                        String operator = "";
+
+                        int mathsOperators = casual.nextInt(3);
+                        if (mathsOperators == 0) {
+                            operator = "+";
+                            result = numberA + numberB;
+                        } else if (mathsOperators == 1) {
+                            operator = "-";
+                            result = numberA - numberB;
+                        } else {
+                            operator = "*";
+                            result = numberA * numberB;
+                        }
+
+        System.out.print("Problem " + round + ": " + numberA + " " + operator + " " + numberB + "= ");
+        
+        int user = scan3.nextInt();
+
+        if (user == result) {
+        	System.out.println("Correct");
+        	corrects++;
+        } else {
+        	System.out.println("Wrong, the answer was " + result);
+        	if (eliminate) {
+        		break;
+                            }
+                        }
+                    }
+
+        System.out.println("You got " + corrects + " out of " + rounds + " correct.");
+                    
+        if (!eliminate) {
+        	System.out.print("Do you want to play again (yes/no)? ");
+        	String playAgain = scan3.next();
+        	if (!playAgain.equalsIgnoreCase("yes")) {
+        		break;
+                        }
+        } else {
+        	System.out.print("Do you want to play elimination mode again (yes/no)? ");
+        	String playAgain = scan3.next();
+        
+        if (!playAgain.equalsIgnoreCase("yes")) {
+                            break;
+                        }
+                    }
+                }
+                
+        System.out.println("Thank you for playing!");
+        
+        }
+
+        
+        
+
+	
+
+}
